@@ -79,7 +79,7 @@
 
                         <div class="header-info" style="padding:0">
                             <ul>
-                                <li style="display:none">
+                                <li id="btccTicker" style="display:none;cursor:pointer" onclick="javascript:window.open('https://wallet.crypto-bridge.org/market/BRIDGE.BTCC_BRIDGE.BTC')">
                                     <div style="padding-right:20px">
                                         <div class="icon-content" style="font-weight: bold">
                                             <strong class="text-white">BTCC</strong>
@@ -328,22 +328,40 @@
 
 <script>
     var updateBTCCTicker = function() {
-        $.ajax("https://api.coinmarketcap.com/v2/ticker/2/?convert=USD").then((response) => {
+        // $.ajax("https://api.coinmarketcap.com/v2/ticker/2/?convert=USD").then((response) => {
+        //     try {
+        //         var market = response.data.quotes.USD;
+        //         var marketIsPositive = market.percent_change_24h >= 0;
+        //         // console.log(market);
+        //         $("#btccPrice").text("$" + market.price.toFixed(2));
+        //         $("#btccChange").text(
+        //             (marketIsPositive ? "+" : "") + market.percent_change_24h.toFixed(2) + "%"
+        //         ).css("color", market.percent_change_24h >= 0 ? "green" : "red");
+        //     } catch(e) {
+        //     }
+        // });
+
+        $.ajax("https://api.coinmarketcap.com/v2/ticker/1/?convert=USD").then((response) => {
             try {
                 var market = response.data.quotes.USD;
-                var marketIsPositive = market.percent_change_24h >= 0;
-                // console.log(market);
-                $("#btccPrice").text("$" + market.price.toFixed(2));
-                $("#btccChange").text(
-                    (marketIsPositive ? "+" : "") + market.percent_change_24h.toFixed(2) + "%"
-                ).css("color", market.percent_change_24h >= 0 ? "green" : "red");
+
+                $.ajax("https://api.crypto-bridge.org/api/v1/ticker").then((response) => {
+                    var ticker = response.find((m) => {
+                        return m && m.id === "BTCC_BTC";
+                    });
+
+                    if(ticker) {
+                        $("#btccPrice").text("$" + (market.price * ticker.last).toFixed(2));
+                        $("#btccTicker").show();
+                    }
+                });
             } catch(e) {
             }
-        })
+        });
     };
 
     updateBTCCTicker();
-    setInterval(updateBTCCTicker, 10000);
+    setInterval(updateBTCCTicker, 30000);
 </script>
 
 <script>window.twttr = (function(d, s, id) {
