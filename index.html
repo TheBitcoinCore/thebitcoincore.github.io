@@ -79,11 +79,11 @@
 
                         <div class="header-info" style="padding:0">
                             <ul>
-                                <li id="btccTicker" style="display:none;cursor:pointer" onclick="javascript:window.open('https://wallet.crypto-bridge.org/market/BRIDGE.BTCC_BRIDGE.BTC')">
+                                <li class="btccTicker" style="display:none;cursor:pointer" onclick="javascript:window.open('https://wallet.crypto-bridge.org/market/BRIDGE.BTCC_BRIDGE.BTC')">
                                     <div style="padding-right:20px">
                                         <div class="icon-content" style="font-weight: bold">
                                             <strong class="text-white">BTCC</strong>
-                                            <span id="btccPrice"></span>
+                                            <span class="btccPrice"></span>
                                             <span id="btccChange"></span>
                                         </div>
                                     </div>
@@ -252,8 +252,48 @@
             </div>
             <!-- WALLET END -->
 
+            <!-- COIN STATS START -->
+            <div class="section-full bg-primary p-t50 p-b30">
+                <div class="container">
+                    <div class="section-content">
+                        <div class="row">
+
+                            <div class="col-md-3 col-sm-6 btccTicker" style="display:none">
+                                <div class="m-b30 text-black wt-icon-box-wraper center">
+                                    <div class="font-50 font-weight-800 m-b5"><span class="btccPrice"></span></div>
+                                    <span class="font-18">BTCC</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="m-b30 text-black wt-icon-box-wraper center hashrateTicker" style="display:none">
+                                    <div class="font-50 font-weight-800 m-b5 hashrate"></div>
+                                    <span class="font-18">Network Hashrate</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="m-b30 text-black wt-icon-box-wraper center">
+                                    <div class="font-50 font-weight-800 m-b5">SHA256</div>
+                                    <span class="font-18">Algorithm</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="m-b30 text-black wt-icon-box-wraper center">
+                                    <div class="font-50 font-weight-800 m-b5">21 Million</div>
+                                    <span class="font-18">Coins</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COIN STATS END -->
+
             <!-- OUR GET IN TOUCH START -->
-            <div class="section-full text-center wt-our-team bg-gray p-t0 p-b50">
+            <div class="section-full text-center wt-our-team bg-gray p-t50 p-b50">
                 <div class="container">
 
                     <!-- TITTLE START -->
@@ -341,21 +381,22 @@
         //     }
         // });
 
-        $.ajax("https://api.coinmarketcap.com/v2/ticker/1/?convert=USD").then((response) => {
+        $.ajax("https://truevisionofsatoshi.com/api/get-info").then((response) => {
             try {
-                var market = response.data.quotes.USD;
+                var price = parseFloat(response.btcc_usd);
+                var difficulty = parseFloat(response.difficulty);
 
-                $.ajax("https://api.crypto-bridge.org/api/v1/ticker").then((response) => {
-                    var ticker = response.find((m) => {
-                        return m && m.id === "BTCC_BTC";
-                    });
+                if(price) {
+                    $(".btccPrice").text("$" + (price).toFixed(2));
+                    $(".btccTicker").show();
+                }
+                if(difficulty) {
+                    var hashrate = difficulty * 4295032833 / 600 / Math.pow(1024, 5);
 
-                    if(ticker) {
-                        $("#btccPrice").text("$" + (market.price * ticker.last).toFixed(2));
-                        $("#btccTicker").show();
-                    }
-                });
-            } catch(e) {
+                    $(".hashrate").text(hashrate.toFixed(2) + " PH/s");
+                    $(".hashrateTicker").show();
+                }
+            } catch(e) { // no worries
             }
         });
     };
@@ -386,14 +427,14 @@
         twttr.widgets.createTimeline(
             {
                 sourceType: "profile",
-                screenName: "bitcoincore_"
+                screenName: "BitcoinCore_"
             },
             document.getElementById("twitter-container"),
             {
                 tweetLimit: 3,
                 chrome: "nofooter noborders transparent noscrollbar",
                 linkColor: "#FF9800",
-                related: "BitcoinClashic"
+                related: "_BitcoinCore"
             }
         );
     });

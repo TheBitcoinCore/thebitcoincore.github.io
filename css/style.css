@@ -7971,9 +7971,6 @@ ol.comment-list li.comment .comment-respond .comment-form p {
  color:#273447;
 }
 @media only screen and (max-width: 991px) {
-.header-info > ul li {
- display:none;
-}
 .header-info > ul li.btn-col-last {
  display:block;
  padding-left:0;
@@ -7981,8 +7978,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 }
 @media only screen and (max-width:767px) {
-.header-info > ul li.btn-col-last,
-.header-info {
+.header-info > ul li.btn-col-last {
  display:none;
 }
 }
