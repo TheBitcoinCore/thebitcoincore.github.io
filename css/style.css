@@ -1573,6 +1573,9 @@ ol.list-num-count.list-outline-none > li:before {
 -------------------------------------*/
 .text-white{color:#fff;}
 .text-primary{color:#FFBC13;}
+a.text-primary:focus, a.text-primary:hover {
+    color:#F28B0F;
+}
 .text-secondry{color:#1a1a1a;}
 .text-black{color:#000;}
 .text-gray{color:#f5f6f6;}
