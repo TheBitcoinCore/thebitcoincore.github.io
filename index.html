@@ -53,9 +53,9 @@
 
     
     <!-- GOOGLE FONTS -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800italic,800,700italic' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round:400,400i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800italic,800,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Crete+Round:400,400i&amp;subset=latin-ext" rel="stylesheet">
     
  
 </head>
@@ -63,7 +63,7 @@
 <body>
 
     <div class="page-wraper">
-        	
+
         <!-- HEADER START -->
         <header class="site-header header-style-3">
         
@@ -90,6 +90,7 @@
                                 </li>
                                 <li class="btn-col-last">
                                     <a href="#wallet" class="site-button text-uppercase radius-sm font-weight-700 m-r10">Get Started</a>
+                                    <a href="corevalues.html" class="site-button text-uppercase radius-sm font-weight-700 m-r10">Core Values</a>
                                 </li>
                             </ul>
                         </div>
@@ -125,6 +126,7 @@
                                     </p>
                                     <p class="text-white">
                                         <strong>This is Bitcoin Core.</strong>
+                                        <a href="corevalues.html" class="text-primary m-l20">&raquo; Read about core values</a>
                                     </p>
                                 </div>
                             </div>
@@ -427,14 +429,14 @@
         twttr.widgets.createTimeline(
             {
                 sourceType: "profile",
-                screenName: "BitcoinCore_"
+                screenName: "_BitcoinCore"
             },
             document.getElementById("twitter-container"),
             {
                 tweetLimit: 3,
                 chrome: "nofooter noborders transparent noscrollbar",
                 linkColor: "#FF9800",
-                related: "_BitcoinCore"
+                related: "BitcoinCore_"
             }
         );
     });
