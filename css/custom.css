@@ -1,3 +1,44 @@
 /*===================================== 
 YOU CAN WRIGHT CUSTOME CSS 
 ======================================*/
+
+.container.roadmap h3 {
+}
+
+.row.roadmap h4 {
+    margin-bottom: 0;
+}
+
+.row.roadmap h4 + h4,
+.row.roadmap span + h4 {
+    margin-top: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .row.roadmap {
+        display:flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+
+    .row.roadmap > div:first-child {
+        border-right: 8px solid orange;
+    }
+
+    .row.roadmap > div:last-child {
+        border-left: 8px solid orange;
+    }
+}
+
+.container.as-seen-on img {
+    height: 35px;
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+.sticky-header.sticky-header-hidden.is-fixed {
+    display: none;
+}
+.sticky-header.sticky-header-hidden.is-fixed.color-fill {
+    display: block;
+}
