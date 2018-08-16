@@ -522,7 +522,7 @@
                     $(".btccTicker").show();
                 }
                 if(difficulty) {
-                    var hashrate = difficulty * 4295032833 / 600 / Math.pow(1024, 5);
+                    var hashrate = difficulty * 4295032833 / 60 / Math.pow(1024, 5);
 
                     $(".hashrate").text(hashrate.toFixed(2) + " PH/s");
                     $(".hashrateTicker").show();
